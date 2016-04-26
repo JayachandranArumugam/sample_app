@@ -9,10 +9,14 @@
 	<%= render 'layouts/header' %> 
       </div>	
       <div id="content" class="round"> 
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
         <%= yield %>
-         <a href = '/users/new' class="signup_button round">Sign up now!</a>	
+      	
       </div>
       <%= render 'layouts/footer' %>
-    </div>
+      <%= params.inspect if Rails.env.development? %>
+  </div>
 </body>
 </html>

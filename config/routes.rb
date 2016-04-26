@@ -4,6 +4,13 @@ map.about '/about', :controller => 'pages',:action => 'about'
 map.contact '/contact', :controller => 'pages',:action => 'contact'
 map.help '/help', :controller => 'pages',:action => 'help'
 map.signup '/signup', :controller => 'users',:action => 'new'
+map.resources :users
+map.resources :sessions,:only => [:new, :create, :destroy]
+map.signin  '/signin', :controller => 'sessions', :action => 'new'
+map.signout '/signout', :controller => 'sessions', :action => 'destroy'
+map.resources :microposts, :only => [:create, :destroy]
+map.resources :users, :member => { :following => :get, :followers => :get }
+map.resources  :relationships, :only => [:create, :destroy]
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
